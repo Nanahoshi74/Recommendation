@@ -36,7 +36,10 @@ int main(){
     ll w,h,x,y;
     cin >> w >> h >> x >> y;
 
-    
+    long double ans = (long double)(h * w)/(long double)2.0;
+    ll p = (x * 2 == w && y * 2 == h) ? 1 : 0;
+
+    cout << fixed << setprecision(15) << ans << " " <<  p << endl;
 
     return 0;
 }
