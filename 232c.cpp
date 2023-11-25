@@ -33,7 +33,56 @@ ll ceil(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n,m;
+    cin >> n >> m;
+
+    // vector<vector<ll>> g1(m),g2(m);
+    vector<ll> A(m),B(m),C(m),D(m);
+    set<P> st;
+    rep(i,m){
+        ll a,b;
+        cin >> a >> b;
+        a--,b--;
+        A[i] = a;
+        B[i] = b;
+        // g1[a].push_back(b);
+        // g1[b].push_back(a);
+    }
+    rep(i,m){
+        ll a,b;
+        cin >> a >> b;
+        a--,b--;
+        C[i] = a;
+        D[i] = b;
+        st.insert(P(a,b));
+        st.insert(P(b,a));
+        // g2[a].push_back(b);
+        // g2[b].push_back(a);
+    }
+
+    vector<ll> path(n);
+    rep(i,n) path[i] = i;
+
+    do{
+        map<ll,ll> mp;
+        bool ok = true;
+        rep(i,n){
+            mp[i] = path[i];
+        }
+        rep(i,m){
+            ll a = mp[A[i]];
+            ll b = mp[B[i]];
+            if(!st.count(P(a,b))){
+                ok = false;
+            }
+        }
+        if(ok){
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }while(next_permutation(all(path)));
+
+    cout << "No" << endl;
 
     return 0;
 }
