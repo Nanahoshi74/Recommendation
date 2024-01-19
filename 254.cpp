@@ -29,11 +29,36 @@ void chmax(ll& x,ll y){x = max(x,y);}
 ll getnum(ll x, ll y, ll H, ll W) { (void) H; return (x * W + y);}
 template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
-ll ceilLL(ll x , ll y){return (x+y-1)/y;}
+ll ceil(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n,k;
+    cin >> n >> k;
+    vector<ll> a(n);
+    rep(i,n){
+        cin >> a[i];
+    }
+
+    rep(r,k){
+        vector<ll> b;
+        for(int i = r; i < n; i += k){
+            b.push_back(a[i]);
+        }
+        sort(all(b));
+        for(int i = r; i < n; i += k){
+            a[i] = b[i/k];
+        }  
+    }
+    vector<ll> tmp = a;
+    sort(all(tmp));
+    if(tmp == a){
+        cout << "Yes" << endl;
+    }
+    else{
+        cout << "No" << endl;
+    }
+
 
     return 0;
 }

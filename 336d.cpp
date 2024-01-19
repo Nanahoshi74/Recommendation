@@ -33,7 +33,30 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    rep(i,n){
+        cin >> a[i];
+    }
+
+    a.push_back(0);
+    a.insert(a.begin(), 0);
+    n += 2;
+    vector<ll> dl(n), dr(n);
+
+    rng(i,1,n){
+        dl[i] = min(dl[i-1] + 1, a[i]);
+    }
+    rrng(i,n-2,0){
+        dr[i] = min(dr[i+1] + 1, a[i]);
+    }
+    ll ans = 0;
+    rep(i,n){
+        ll now = min(dl[i], dr[i]);
+        chmax(ans, now);
+    }
+    cout << ans << endl;
 
     return 0;
 }

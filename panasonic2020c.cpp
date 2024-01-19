@@ -29,11 +29,17 @@ void chmax(ll& x,ll y){x = max(x,y);}
 ll getnum(ll x, ll y, ll H, ll W) { (void) H; return (x * W + y);}
 template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
-ll ceilLL(ll x , ll y){return (x+y-1)/y;}
+ll ceil(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll a,b,c;
+    cin >> a >> b >> c;
+
+    if(a + b + 2 * sqrtf64x(a*b) < c){
+        cout << "Yes" << endl;
+    }
+    else cout << "No" << endl;
 
     return 0;
 }

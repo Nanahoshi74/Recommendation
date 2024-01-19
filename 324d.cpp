@@ -29,11 +29,34 @@ void chmax(ll& x,ll y){x = max(x,y);}
 ll getnum(ll x, ll y, ll H, ll W) { (void) H; return (x * W + y);}
 template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
-ll ceilLL(ll x , ll y){return (x+y-1)/y;}
+ll ceil(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    vector<ll> sc(10);
+    for(char c : s){
+        sc[ctoi(c)]++;
+    }
+
+    ll ans = 0;
+
+    rng(x,0,LINF){
+        string t = to_string(x*x);
+        if(si(t) > si(s)) break;
+        vector<ll> tc(10);
+        for(char c : t){
+            tc[ctoi(c)]++;
+        }
+        tc[0] += si(s)-si(t);
+        if(sc == tc) ans++;
+    }
+
+    cout << ans << endl;
 
     return 0;
 }
