@@ -35,6 +35,31 @@ int main(){
 
     ll n;
     cin >> n;
+    vector<ll> a(n);
+    rep(i,n){
+        cin >> a[i];
+    }
+    vector<ll> b(n);
+    b[0] = a[0];
+    rng(i,1,n){
+        b[i] = b[i-1] + a[i];
+    }
+    vector<ll> c(n);
+    c[n-1] = a[n-1];
+    rrng(i,n-2,0){
+        c[i] = c[i+1] + a[i];
+    }
+    ll ans = LINF;
+    // print(b);
+    // print(c);
+    rep(i,n){
+        if(i + 1 >= n){
+            break;
+        }
+        chmin(ans, abs(b[i]-c[i + 1]));
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

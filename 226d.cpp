@@ -35,6 +35,25 @@ int main(){
 
     ll n;
     cin >> n;
+    vector<P> pa(n);
+    rep(i,n){
+        cin >> pa[i].first >> pa[i].second;
+    }
+    set<P> st;
+    rep(i,n){
+        rep(j,n){
+            if(i == j){
+                continue;
+            }
+            else{
+                ll v = gcd(pa[i].first - pa[j].first, pa[i].second - pa[j].second);
+                P p = P((pa[i].first-pa[j].first) / v, (pa[i].second-pa[j].second) / v);
+                st.insert(p);
+            }
+        }
+    }
+
+    cout << si(st) << endl;
 
     return 0;
 }

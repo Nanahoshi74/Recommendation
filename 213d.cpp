@@ -35,6 +35,36 @@ int main(){
 
     ll n;
     cin >> n;
+    vector<vector<ll>> g(n);
+
+    rep(i,n-1){
+        ll a,b;
+        cin >> a >> b;
+        a--, b--;
+        g[a].push_back(b);
+        g[b].push_back(a);
+    }
+
+    vector<ll> ans;
+    rep(i,n){
+        sort(all(g[i]));
+    }
+
+    
+    auto dfs = [&](auto dfs, ll prev, ll v) -> void{
+        ans.push_back(v);
+        for(auto next_v : g[v]){
+            if(next_v == prev) continue;
+            dfs(dfs, v, next_v);
+            ans.push_back(v);
+        }
+    };
+
+    dfs(dfs, -1, 0);
+    for(auto v : ans){
+        cout << v + 1 << " ";
+    }
+    cout << endl;
 
     return 0;
 }

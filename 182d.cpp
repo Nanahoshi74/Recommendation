@@ -33,7 +33,24 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    rep(i,n){
+        cin >> a[i];
+    }
+
+    ll ans = 0;
+    ll s = 0, b = 0;
+    ll max_b = 0;
+    rep(i,n){
+        b += a[i];
+        chmax(max_b, b);
+        chmax(ans, s + max_b);
+        s += b;
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

@@ -33,8 +33,24 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    ll n;
-    cin >> n;
+    long double a, b, x;
+    cin >> a >> b >> x;
+
+    const long double PI = acos(-1);
+
+    if(a*a*b / 2 > x){
+        long double rad = atan(a*b*b / (2.0 * x));
+        long double dig = rad * (180.0 / PI);
+        cout << setprecision(15) << fixed << dig << endl;
+        return 0;
+    }
+
+    long double y = ((long double)2.0 * x - a*a*b) / (a*a);
+
+
+    long double rad = asin((long double)(b-y) / sqrtf64x(a*a + (b-y)*(b-y)));
+
+    cout << setprecision(15) << fixed << rad * (180.0 / PI) << endl; 
 
     return 0;
 }

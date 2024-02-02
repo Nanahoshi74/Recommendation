@@ -36,5 +36,35 @@ int main(){
     ll n;
     cin >> n;
 
+    map<ll, unordered_set<ll>> mp;
+    map<ll, vector<ll>> mv;
+
+    rep(i,n){
+        ll x, y;
+        cin >> x >> y;
+        mp[x].insert(y);
+        mv[x].push_back(y);
+    }
+
+    ll ans = 0;
+    for(auto &p : mv){
+        vector<ll> z = p.second;
+        ll len = si(z);
+        rep(i,len){
+            rng(j,i+1,len){
+                for(auto &q : mp){
+                    if(q.first > p.first){
+                        unordered_set<ll> u = q.second;
+                        if(u.count(z[i]) && u.count(z[j])){
+                            ans++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    cout << ans << endl;
+
     return 0;
 }

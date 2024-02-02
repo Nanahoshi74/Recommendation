@@ -33,8 +33,7 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    ll n;
-    cin >> n;
+    
 
     return 0;
 }

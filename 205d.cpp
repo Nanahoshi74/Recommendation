@@ -33,8 +33,29 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    ll n;
-    cin >> n;
+    ll n, q;
+    cin >> n >> q;
+    vector<ll> a(n);
+    rep(i,n){
+        cin >> a[i];
+    }
+    rep(i,q){
+        ll k;
+        cin >> k;
+        ll ng = 0, ok = 2e18;
+        while(abs(ok-ng) > 1){
+            ll m = (ok + ng) / 2;
+            ll cnt = upper_bound(all(a), m) - a.begin();
+            if(m - cnt >= k){
+                ok = m;
+            }
+            else{
+                ng = m;
+            }
+        }
+        cout << ok << endl;
+        
+    }
 
     return 0;
 }

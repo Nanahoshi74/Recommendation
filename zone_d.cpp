@@ -33,8 +33,44 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    ll n;
-    cin >> n;
+    string s;
+    cin >> s;
+
+    ll cnt = 0;
+    deque<char> dq;
+    rep(i,si(s)){
+        if(s[i] == 'R'){
+            cnt++;
+        }
+        else{
+            if(cnt % 2 == 0){
+                dq.push_back(s[i]);
+            }
+            else{
+                dq.push_front(s[i]);
+            }
+        }
+    }
+
+    if(cnt % 2 == 1){
+        reverse(all(dq));
+    }
+    string ans;
+    for(auto c : dq){
+        if(ans.empty()){
+            ans.push_back(c);
+        }
+        else{
+            if(ans.back() == c){
+                ans.pop_back();
+            }
+            else{
+                ans.push_back(c);
+            }
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }
