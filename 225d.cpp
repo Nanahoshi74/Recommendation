@@ -31,9 +31,47 @@ template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
 ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
+
 int main(){
 
-    
+    ll n, q;
+    cin >> n >> q;
+
+    vector<ll> front(n, -1);//電車iの前に連結している電車
+    vector<ll> back(n, -1);//電車iの後ろに連結している電車
+
+    while(q--){
+        ll a;
+        cin >> a;
+        if(a == 1){
+            ll x, y;
+            cin >> x >> y;
+            x--, y--;
+            back[x] = y;
+            front[y] = x;
+        }
+        else if(a == 2){
+            ll x, y;
+            cin >> x >> y;
+            x--, y--;
+            back[x] = -1;
+            front[y] = -1;
+        }
+        else{
+            ll x;
+            cin >> x;
+            x--;
+            vector<ll> ans;
+            while(front[x] != -1) x = front[x];
+            ans.push_back(x + 1);
+            while(back[x] != -1){
+                x = back[x];
+                ans.push_back(x+1);
+            }
+            cout << si(ans) << " ";
+            print(ans);
+        }
+    }
 
     return 0;
 }

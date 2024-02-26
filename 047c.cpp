@@ -33,7 +33,23 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    string s;
+    cin >> s;
+
+    vector<pair<char, ll>> pa;
+    pa.emplace_back(s[0], 1);
+
+    rng(i,1,si(s)){
+        if(pa.back().first == s[i]){
+            pa.back().second++;
+        }
+        else{
+            pa.emplace_back(s[i], 1);
+        }
+    }
+
+    cout << si(pa)-1 << endl;
+
 
     return 0;
 }

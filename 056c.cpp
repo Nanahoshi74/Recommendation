@@ -33,7 +33,18 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll x;
+    cin >> x;
+
+    ll ans = 0; 
+
+    rng(i,1,x+1){
+        ans += i;
+        if(ans >= x){
+            cout << i << endl;
+            return 0;
+        }
+    }
 
     return 0;
 }

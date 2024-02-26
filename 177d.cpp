@@ -33,7 +33,21 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n, m;
+    cin >> n >> m;
+    dsu uf(n+1);
+    rep(i,m){
+        ll a, b;
+        cin >> a >> b;
+        a--, b--;
+        uf.merge(a, b);
+    }
+    ll ans = 0;
+    rep(i,n){
+        chmax(ans, uf.size(i));
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

@@ -31,9 +31,25 @@ template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
 ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
+ll mypow(ll n, ll m){
+    ll ans = 1;
+    rep(i,m){
+        ans *= n;
+    }
+    return ans;
+}
+
 int main(){
 
-    
+    ll n, m;
+    cin >> n >> m;
+
+    ll p = 1900*m + (n - m)*100;
+
+    ll z = mypow(2, m);
+
+    cout << p * z << endl;
+
 
     return 0;
 }

@@ -33,7 +33,19 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    ll b = 0;
+    rep(i,n){
+        cin >> a[i];
+        b ^= a[i];
+    }
+
+    rep(i,n){
+        cout << (b^a[i]) << " ";
+    }
+    cout << endl;
 
     return 0;
 }

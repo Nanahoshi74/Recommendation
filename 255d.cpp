@@ -33,7 +33,31 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n, q;
+    cin >> n >> q;
+    vector<ll> a(n);
+    vector<ll> rui(n+1, 0);
+    rep(i,n){
+        cin >> a[i];
+    }
+    sort(all(a));
+    rep(i,n){
+        rui[i+1] = rui[i];
+        rui[i+1] += a[i];
+    }
+
+    auto f = [&](ll p) -> ll{
+        ll lj = upper_bound(all(a), p)-a.begin();
+        ll li = lj-1;
+        ll ans = (li + 1) * p - rui[li + 1];
+        ans += rui[n]-rui[lj] - (n-lj)* p;
+        return ans;
+    };
+    while(q--){
+        ll x;
+        cin >> x;
+        cout << f(x) << endl;
+    }
 
     return 0;
 }

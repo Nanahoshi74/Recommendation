@@ -33,7 +33,27 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
+    ll n,m;
+    cin >> n >> m;
     
+    vector<vector<ll>> g(n);
+    bool ok = true;
+    dsu d(n+1);
+    rep(i,m){
+        ll a, b;
+        cin >> a >> b;
+        a--, b--;
+        g[a].push_back(b);
+        g[b].push_back(a);
+        if(si(g[a]) >= 3 || si(g[b]) >= 3 || d.same(a,b)){
+            ok = false;
+        }
+        d.merge(a, b);
+    }
+
+    if(ok) cout << "Yes" << endl;
+    else cout << "No" << endl;
+
 
     return 0;
 }

@@ -33,7 +33,49 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+    vector<ll> r, g, b;
+    rep(i,n){
+        if(s[i] == 'R'){
+            r.push_back(i);
+        }
+        else if(s[i] == 'G'){
+            g.push_back(i);
+        }
+        else{
+            b.push_back(i);
+        }
+    }
+    ll ans = 0;
+    rep(i,n){
+        rng(j,i+1,n){
+            if(s[i] != s[j]){
+                unordered_set<char> st = {'R', 'G', 'B'};
+                st.erase(s[i]);
+                st.erase(s[j]);
+                char c = *st.begin();
+                ll u, v;
+                if(c == 'R'){
+                    u = r.end()-upper_bound(all(r), j);
+                    v = upper_bound(r.begin(), r.end(), j-i+j) - lower_bound(r.begin(), r.end(), j-i+j);
+                }
+                else if(c == 'G'){
+                    u = g.end()-upper_bound(all(g), j);
+                    v = upper_bound(g.begin(), g.end(), j-i+j) - lower_bound(g.begin(), g.end(), j-i+j);
+                }
+                else{
+                    u = b.end()-upper_bound(all(b), j);
+                    v = upper_bound(b.begin(), b.end(), j-i+j) - lower_bound(b.begin(), b.end(), j-i+j);
+                }
+                ans += u - v;
+            }
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

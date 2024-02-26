@@ -33,7 +33,32 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n, m, k;
+    cin >> n >> m >> k;
+
+    vector<mint> dp(k+1, 0);
+    rng(i,1,m+1){
+        if(i <= k){
+            dp[i] = 1;
+        }
+    }
+    rng(i,1,n){
+        vector<mint> p(k+1);
+        swap(dp, p);
+        rng(j,1,k+1){
+            rng(v,1,m+1){
+                if(j + v <= k){
+                    dp[j + v] += p[j];
+                }
+            }
+        }
+    }
+
+    mint ans = 0;
+    rng(i,1,k+1){
+        ans += dp[i];
+    }
+    cout << ans.val() << endl;
 
     return 0;
 }

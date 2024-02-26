@@ -33,7 +33,29 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    rep(i,n){
+        cin >> a[i];
+    }
+
+    sort(rall(a));
+
+    ll ans = 0;
+    ll t = n-1;
+    rep(i,n){
+        ll lim = 2;
+        if(i == 0) lim = 1;
+        rep(j,lim){
+            if(t > 0){
+                ans += a[i];
+                t--;
+            }
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

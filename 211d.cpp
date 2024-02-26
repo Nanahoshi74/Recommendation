@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #include <atcoder/all>
 using namespace atcoder;
-using mint = modint998244353;
-//using mint = modint1000000007;
+// using mint = modint998244353;
+using mint = modint1000000007;
 // using mint = modint;  /*このときmint::set_mod(mod)のようにしてmodを底にする*/
 typedef long long ll;
 #define rep(i, n) for (ll i = 0; i < (ll)(n); i++)
@@ -33,7 +33,46 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n,m;
+    cin >> n >> m;
+    vector<vector<ll>> g(n);
+    rep(i,m){
+        ll a, b;
+        cin >> a >> b;
+        a--, b--;
+        g[a].push_back(b);
+        g[b].push_back(a);
+    }
+
+    vector<ll> dist(n, -1);
+    queue<ll> q;
+    dist[0] = 0;
+    q.push(0);
+    vector<ll> vs;
+    while(!q.empty()){
+        ll v = q.front();
+        q.pop();
+        vs.push_back(v);
+        for(auto next_v : g[v]){
+            if(dist[next_v] != -1){
+                continue;
+            }
+            dist[next_v] = dist[v] + 1;
+            q.push(next_v);
+        }
+    }
+
+    vector<mint> dp(n);
+    dp[0] = 1;
+    for(auto v : vs){
+        for(auto u : g[v]){
+            if(dist[u] == dist[v] + 1){
+                dp[u] += dp[v];
+            }
+        }
+    }
+
+    cout << dp[n-1].val() << endl;
 
     return 0;
 }

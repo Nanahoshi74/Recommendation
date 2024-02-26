@@ -31,9 +31,33 @@ template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
 ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
+vector<long long> divisor(long long n) {//**************************約数列挙************************:
+    vector<long long> ret;
+    for (long long i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            ret.push_back(i);
+            if (i * i != n) ret.push_back(n / i);
+        }
+    }
+    sort(ret.begin(), ret.end()); // 昇順に並べる
+    return ret;
+}
+
 int main(){
 
-    
+    ll n;
+    cin >> n;
+
+    ll ans = 0;
+
+    vector<ll> z = divisor(2*n);
+    for(auto l : z){
+        if((2*n / l - l + 1) % 2 == 0){
+            ans++;
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

@@ -33,7 +33,22 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll a, b, x;
+    cin >> a >> b >> x;
+
+    ll ok = 0, ng = 1e9+1;
+    while(abs(ok-ng) > 1){
+        ll m = (ok + ng) / 2;
+        ll d = si(to_string(m));
+        if(a * m + b * d > x){
+            ng = m;
+        }
+        else{
+            ok = m;
+        }
+    }
+
+    cout << ok << endl;
 
     return 0;
 }

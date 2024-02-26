@@ -33,7 +33,31 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll q;
+    cin >> q;
 
+    ll cnt = 0;
+
+    priority_queue<ll, vector<ll>, greater<ll>> pq;
+
+    while(q--){
+        ll a;
+        cin >> a;
+        if(a == 1){
+            ll b;
+            cin >> b;
+            pq.push(b-cnt);
+        }
+        else if(a == 2){
+            ll b;
+            cin >> b;
+            cnt += b;
+        }
+        else{
+            cout << pq.top() + cnt << endl;
+            pq.pop();
+        }
+    }
+    
     return 0;
 }

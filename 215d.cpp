@@ -31,32 +31,71 @@ template<typename T>
 void print(vector<T> &p){rep(i,si(p)) cout << p[i] << " "; cout << endl;}
 ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
-int main(){
+vector<pair<long long, long long> > prime_factorize(long long N) {
+    // 答えを表す可変長配列
+    vector<pair<long long, long long> > res;
 
-    ll n;
-    cin >> n;
-    vector<vector<ll>> data(n, vector<ll>(2));
-    rep(i,n){
-        cin >> data[i][0] >> data[i][1];
+    // √N まで試し割っていく
+    for (long long p = 2; p * p <= N; ++p) {
+        // N が p で割り切れないならばスキップ
+        if (N % p != 0) {
+            continue;
+        }
+
+        // N の素因数 p に対する指数を求める
+        int e = 0;
+        while (N % p == 0) {
+            // 指数を 1 増やす
+            ++e;
+
+            // N を p で割る
+            N /= p;
+        }
+
+        // 答えに追加
+        res.emplace_back(p, e);
     }
 
-    vector<vector<mint>> dp(n+1, vector<mint>(2));
+    // 素数が最後に残ることがありうる
+    if (N != 1) {
+        res.emplace_back(N, 1);
+    }
+    return res;
+}
 
-    dp[0][0] = 1, dp[0][1] = 1;
+int main(){
 
-    rng(i,1,n){
-        rep(j,2){
-            rep(k,2){
-                if(data[i-1][j] != data[i][k]){
-                    dp[i][k] += dp[i-1][j];
-                }
-            }
+    ll n, m;
+    cin >> n >> m;
+    vector<ll> a(n);
+
+    unordered_set<ll> st;
+    rep(i,n){
+        cin >> a[i];
+        vector<P> pa = prime_factorize(a[i]);
+        for(auto p : pa){
+            st.insert(p.first);
         }
     }
 
-    mint ans = dp[n-1][0] + dp[n-1][1];
+    vector<ll> ans;
 
-    cout << ans.val() << endl;
+    rng(i,1,m+1){
+        vector<P> pm = prime_factorize(i);
+        bool ok = true;
+        for(auto p : pm){
+            if(st.count(p.first)){
+                ok = false;
+            }
+        }
+        if(ok) ans.push_back(i);
+    }
+
+    cout << si(ans) << endl;
+    rep(i,si(ans)){
+        cout << ans[i] << endl;
+    }
+
 
     return 0;
 }

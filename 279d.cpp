@@ -33,7 +33,22 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll a, b;
+    cin >> a >> b;
+
+    ll l = 0, r = 1e18;
+    auto f = [&](ll n) -> long double{
+        long double tmp = (long double)a/sqrtf64x(n + 1) + (long double)b*n;
+        return tmp;
+    };
+    while(r - l >= 3){
+        ll c1 = (2 *l + r) / 3;
+        ll c2 = (r * 2 + l) / 3;
+        if(f(c1) < f(c2)) r = c2;
+        else l = c1; 
+    }
+    long double ans = min({f(l), f(l+1), f(r)});
+    cout << fixed << setprecision(15) << ans << endl;
 
     return 0;
 }

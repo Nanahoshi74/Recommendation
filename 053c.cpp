@@ -33,7 +33,31 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll x;
+    cin >> x;
+
+    ll ok = 0, ng = 1e17;
+    while(abs(ok-ng) > 1){
+        ll m = (ok + ng) / 2;
+        if(11 * m > x){
+            ng = m;
+        }
+        else{
+            ok = m;
+        }
+    }
+    ll cnt = 3;
+    vector<ll> a = {0, 6, 5};
+    ll sum = 0;
+
+    rep(i,3){
+        sum += a[i];
+        if(ok * 11 + sum >= x){
+            cout << ok * 2 + i << endl;
+            return 0;
+        }
+    }
+
 
     return 0;
 }

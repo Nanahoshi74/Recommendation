@@ -33,7 +33,69 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll a,b;
+    cin >> a >> b;
+    ll c, d;
+    cin >> c >> d;
+
+    auto f = [&](ll s, ll t){
+        if(s + t == c + d || s - t == c - d){
+            return true;
+        }
+        return false;
+    };
+
+    if(a == c && b == d){
+        cout << 0 << endl;
+        return 0;
+    }
+    else if(a + b == c + d){
+        cout << 1 << endl;
+        return 0;
+    }
+    else if(a - b == c - d){
+        cout << 1 << endl;
+        return 0;
+    }
+    else if(abs(a - c) + abs(b - d) <= 3){
+        cout << 1 << endl;
+        return 0;
+    }
+    else if((a + b) % 2 == (c + d) % 2){
+        cout << 2 << endl;
+        return 0;
+    }
+    else if(abs(a - c) + abs(b - d) <= 6){
+        cout << 2 << endl;
+        return 0;
+    }
+    else if(f(a + 3, b)){
+        cout << 2 << endl;
+        return 0;
+    }
+    else if(f(a - 3, b)){
+        cout << 2 << endl;
+        return 0;
+    }
+    else if(f(a, b + 3)){
+        cout << 2 << endl;
+        return 0;
+    }
+    else if(f(a, b - 3)){
+        cout << 2 << endl;
+        return 0;
+    }
+    for(int x = a - 2; x <= a + 2; x++){
+        for(int y = b - 2; y <= b + 2; y++){
+            if(f(x,y)){
+                cout << 2 << endl;
+                return 0;
+            }
+        }
+    }
+
+    cout << 3 << endl;
+
 
     return 0;
 }

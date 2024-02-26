@@ -33,7 +33,54 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll w, h, n;
+    cin >> w >> h >> n;
+
+    vector<vector<ll>> p(h+1,vector<ll>(w+1, 0));
+
+    rep(i,n){
+        ll x, y, a;
+        cin >> x >> y >> a;
+        if(a == 1){
+            rep(j,h+1){
+                rep(k,x){
+                    p[j][k]++;
+                }
+            }
+        }
+        else if(a == 2){
+            rep(j,h+1){
+                rng(k,x,w+1){
+                    p[j][k]++;
+                }
+            }
+        }
+        else if(a == 3){
+            rep(j,w+1){
+                rng(k,h-y,h+1){
+                    p[k][j]++;
+                }
+            }
+        }
+        else{
+            rep(j,w+1){
+                rep(k,h-y){
+                    p[k][j]++;
+                }
+            }
+        }
+    }
+
+    ll ans = 0;
+    rep(i,h){
+        rep(j,w){
+            if(p[i][j] == 0){
+                ans++;
+            }
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

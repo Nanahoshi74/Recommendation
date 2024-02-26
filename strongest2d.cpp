@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #include <atcoder/all>
 using namespace atcoder;
-using mint = modint998244353;
-//using mint = modint1000000007;
+// using mint = modint998244353;
+using mint = modint1000000007;
 // using mint = modint;  /*このときmint::set_mod(mod)のようにしてmodを底にする*/
 typedef long long ll;
 #define rep(i, n) for (ll i = 0; i < (ll)(n); i++)
@@ -33,7 +33,15 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n, p;
+    cin >> n >> p;
+
+    mint z = p-2;
+
+
+    mint ans = mint(p-1) * z.pow(n-1); 
+
+    cout << ans.val() << endl;
 
     return 0;
 }

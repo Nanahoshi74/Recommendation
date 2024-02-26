@@ -33,7 +33,33 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    ll n;
+    cin >> n;
+    vector<string> s(n);
+    rep(i,n){
+        cin >> s[i];
+    }
+
+    vector<ll> dp(2, 1);
+
+    rng(i,1,n+1){
+        vector<ll> p(2);
+        swap(dp, p);
+        rep(j,2){
+            rep(x,2){
+                ll nj = j;
+                if(s[i-1] == "AND"){
+                    nj &= x;
+                }
+                else{
+                    nj |= x;
+                }
+                dp[nj] += p[j];
+            }
+        }
+    }
+
+    cout << dp[1] << endl;
 
     return 0;
 }

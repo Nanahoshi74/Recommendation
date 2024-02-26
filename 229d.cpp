@@ -33,7 +33,56 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    string s;
+    cin >> s;
+    ll k;
+    cin >> k;
+
+    ll n = si(s);
+
+    vector<ll> p(n+1), q(n+1);
+    rep(i,n){
+        p[i+1] = p[i];
+        q[i+1] = q[i];
+        if(s[i] == 'X'){
+            p[i+1]++;
+        }
+        else if(s[i] == '.'){
+            q[i+1]++;
+        }
+    }
+
+
+    auto check = [&](ll li, ll m) -> bool{
+        if(li + m -1  > n){
+            return false;
+        }
+        if((m - (p[li+m-1] - p[li-1]))<= k){
+            return true;
+        }
+        else if(m - (p[li+m-1] - p[li-1]) > k){
+            return false;
+        }
+        return true;
+    };
+    ll ans = -1;
+
+    rng(i,1,n+1){
+        ll ok = 0, ng = 1e10;
+        while(abs(ok - ng) > 1){
+            ll m = (ok + ng) / 2;
+            if(check(i, m)){
+                ok = m;
+            }
+            else{
+                ng = m;
+            }
+            // cout << ok << " " << ng << endl;
+        }
+        chmax(ans, ok);
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

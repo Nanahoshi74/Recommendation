@@ -33,6 +33,30 @@ ll ceilLL(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
+    ll n, k;
+    cin >> n >> k;
+    vector<ll> a(n);
+    ll ans = 0;
+
+    vector<ll> rui(n+1);
+
+    rep(i,n){
+        cin >> a[i];
+        rui[i+1] = rui[i];
+        rui[i+1] += a[i];
+    }
+
+    map<ll,ll> mp;
+
+    rep(i,n+1){
+        ll p = rui[i]-k;
+        if(mp.count(p)){
+            ans += mp[p];
+        }
+        mp[rui[i]]++;
+    }
+
+    cout << ans << endl;
     
 
     return 0;
